@@ -14,3 +14,9 @@ after_success:
   - docker build -t dltswatts/multi-nginx ./nginx
   - docker build -t dltswatts/multi-server ./server
   - docker build -t dltswatts/multi-worker ./worker
+  # Log in to docker CLI
+  - echo "$DOCKER_PW" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push dltswatts/multi-client
+  - docker push dltswatts/multi-nginx
+  - docker push dltswatts/multi-server
+  - docker push dltswatts/multi-worker
